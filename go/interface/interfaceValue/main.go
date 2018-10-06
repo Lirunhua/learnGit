@@ -27,5 +27,5 @@ func (f F) M() {
 func main() {
 	var i I
 	// if : i = T{"hello"}, the wrong msg will be : type T didn't implement interface I
-	i = &T{"hello"} 
+	i = &T{"hello"}
 }
