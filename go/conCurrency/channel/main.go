@@ -1,24 +1,28 @@
 package main
 
 import "fmt"
-
 func sum(s []int, c chan int) {
 	sum := 0
 	for _, v := range s {
 		sum += v
 	}
-	c <- sum // 将和送入 c
+	c <- sum
 }
 
 func main() {
-	s := []int{7, 2, 8, -9, 4, 0}
-
+	s := []int{1,2,3,4,5,6,7,8,9}
 	c := make(chan int)
-	// it will firstly send sum to the channel
-	go sum(s[:len(s)/2], c)  
-	// it will send its sum to channel util the sum send by the first goroutine picked by main()
-	go sum(s[len(s)/2:], c)  
-	x, y := <-c, <-c // 从 c 中接收 
+	go sum(s[:len(s)/2], c)
+	go sum(s[len(s)/2:], c)
+	x, y := <-c, <-c
+	/*
+	this can be seperated by two processing
+	first : x <- c, the c here is given by goroutine "go sum(s[:len(s)/2], c)"
+	after the content in c was taken by "x <- c", which given by goroutine 
+	"go sum(s[:len(s)/2], c)", then the goroutine "go sum(s[len(s)/2:], c)"
+	will send the result to channel c; and 
+	"second: y <- c " will take the content from channel c;
+	*/
 
 	fmt.Println(x, y, x+y)
 }
