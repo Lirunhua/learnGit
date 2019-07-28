@@ -1,6 +1,8 @@
 # learnGit
-used to learn git
+THE best URL of learning git:
+https://www.zhihu.com/question/38008771/answer/517332296?utm_source=ZHShareTargetIDMore&utm_medium=social&utm_oi=30193829806080
 
+used to learn git
 create new branch now
 
 
